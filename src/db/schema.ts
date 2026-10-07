@@ -1,5 +1,9 @@
 import { index, pgTable, text, timestamp, uuid, varchar } from "drizzle-orm/pg-core";
 
+/*
+ * Row Level Security is enabled on every table. The website connects as the table owner, so it keeps working,
+ * while Supabase's public Data API (anon key) can't read or change customer enquiries.
+ */
 export const quoteRequests = pgTable(
   "quote_requests",
   {
@@ -19,4 +23,4 @@ export const quoteRequests = pgTable(
     index("quote_requests_status_created_idx").on(table.status, table.createdAt),
     index("quote_requests_created_idx").on(table.createdAt),
   ],
-);
+).enableRLS();

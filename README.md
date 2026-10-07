@@ -23,6 +23,7 @@ The website for **0DAY Security**, offensive security and compliance specialists
 - "Who we are", "How we work", "Why 0DAY Security", FAQ and call-to-action sections
 - Quote request form with validation, a spam honeypot and rate limiting — saved to PostgreSQL
 - Leads dashboard at `/admin` — status tracking, private notes, search, filters and CSV export
+- System check at `/admin/status` — tests the database connection, tables, Row Level Security, settings and domain, and explains how to fix each problem in plain language
 - Optional email alerts for new leads via [Resend](https://resend.com)
 - Hidden terminal easter egg — press <kbd>&#96;</kbd> on the homepage
 - Security headers (CSP, HSTS and more), `/.well-known/security.txt`, sitemap, robots.txt and a social share image
@@ -39,17 +40,17 @@ Next.js 16 · React 19 · TypeScript · Tailwind CSS 4 · PostgreSQL · Drizzle 
 git clone https://github.com/<your-username>/<your-repo>.git
 cd <your-repo>
 npm install
-cp .env.example .env   # then fill in your own values
+cp .env.example .env.local   # then fill in your own values
 ```
 
 Create the database tables, then start the development server:
 
 ```bash
-npx drizzle-kit push --dialect=postgresql --schema=./src/db/schema.ts --url="$DATABASE_URL"
+npx drizzle-kit push
 npm run dev
 ```
 
-Replace `$DATABASE_URL` with your connection string if it isn't exported in your shell. Running `npx drizzle-kit push` without flags uses the local connection string in `drizzle.config.json`.
+`drizzle.config.ts` reads `DIRECT_URL` or `DATABASE_URL` from your shell, `.env.local` or `.env`, and falls back to a local database at `127.0.0.1`. It only manages this site's own tables, so other tables in a shared database are never touched, and it turns on Row Level Security for them. (`drizzle.config.json` is only used by the builder's sandbox.)
 
 Open <http://localhost:3000>. The leads dashboard is at <http://localhost:3000/admin> — sign in with your `ADMIN_PASSWORD`.
 
@@ -57,15 +58,19 @@ Open <http://localhost:3000>. The leads dashboard is at <http://localhost:3000/a
 
 | Variable | Required | Description |
 | --- | --- | --- |
-| `DATABASE_URL` | Yes | PostgreSQL connection string |
-| `ADMIN_PASSWORD` | Yes, for `/admin` | Leads dashboard password (at least 8 characters) |
-| `ADMIN_SESSION_SECRET` | Recommended | Long random string used to sign admin sessions |
+| `DATABASE_URL` | Yes | PostgreSQL connection string. On Vercel with Supabase, use the **Transaction pooler** string (port 6543) |
+| `DATABASE_CA_CERT` | Recommended | Your database's CA certificate (PEM) for full SSL verification. Supabase: Database Settings → SSL Configuration → Download certificate |
+| `DATABASE_SSL` | Optional | Set to `disable` only for a remote database without SSL support. Remote databases use SSL automatically |
+| `DIRECT_URL` | Optional | Connection string for `drizzle-kit push` instead of `DATABASE_URL` (for example Supabase's session pooler) |
+| `DATABASE_POOL_MAX` | Optional | Maximum database connections per server instance (default 5) |
+| `ADMIN_PASSWORD` | Yes, for `/admin` | Leads dashboard password (at least 8 characters; 14+ recommended) |
+| `ADMIN_SESSION_SECRET` | Recommended | Long random string used to sign admin sessions (`openssl rand -base64 32`) |
 | `NEXT_PUBLIC_SITE_URL` | Recommended | Public site URL — `https://0daysecurity.tech` in production (sitemap and social previews) |
 | `RESEND_API_KEY` | Optional | Turns on email alerts for new quote requests |
 | `QUOTE_NOTIFY_EMAIL` | Optional | Where alerts are sent (comma-separated for several addresses) |
 | `QUOTE_FROM_EMAIL` | Optional | Sender address — must use a domain verified in Resend |
 
-Your `.env` file is listed in `.gitignore`, so your secrets stay out of the repository.
+Your `.env` and `.env.local` files are listed in `.gitignore`, so your secrets stay out of the repository.
 
 ## Customising
 
@@ -92,15 +97,30 @@ Logos are shown in white so every client looks consistent on the dark design. To
 
 Only display logos you have permission to use. A standalone HTML + Tailwind version of this section is available in `snippets/clients-section.html`.
 
-## Deploying
+## Deploying (Vercel + Supabase)
 
-The site runs on any Node.js host, such as Vercel, Railway or Render, with a managed PostgreSQL database such as Neon or Supabase.
+The site runs on any Node.js host with PostgreSQL. These steps use Vercel and Supabase.
 
-1. Import this repository into your hosting provider.
-2. Add the environment variables above, and set `NEXT_PUBLIC_SITE_URL` to `https://0daysecurity.tech`.
-3. Create the tables once by running the `drizzle-kit push` command above with your production `DATABASE_URL`.
-4. Deploy using `npm run build` as the build command and `npm run start` as the start command.
-5. Connect your `0daysecurity.tech` domain in your hosting provider's settings.
+1. **Database URL.** In Supabase, open **Connect → Transaction pooler** and copy the connection string (port 6543). Replace `[YOUR-PASSWORD]` with your database password. Don't use the direct connection (`db.<project>.supabase.co`) — it only works over IPv6, which Vercel doesn't support.
+2. **Create the tables.** Put that string in `.env.local` as `DATABASE_URL` and run `npx drizzle-kit push`. This also turns on Row Level Security, so Supabase's public Data API can't read customer enquiries. If push hangs, add the **Session pooler** string (port 5432) as `DIRECT_URL` and run it again.
+3. **Environment variables.** In Vercel → Settings → Environment Variables, add `DATABASE_URL`, `ADMIN_PASSWORD`, `ADMIN_SESSION_SECRET` and `NEXT_PUBLIC_SITE_URL` (plus `DATABASE_CA_CERT` and the email settings if you use them). This site doesn't need any Supabase API keys.
+4. **Deploy** with `vercel --prod`, or push to the Git branch connected to Vercel. Redeploying an old deployment from the dashboard rebuilds old code.
+5. **Check it.** Sign in at `/admin` and open **System check** (`/admin/status`). It lists anything that's wrong and how to fix it.
+6. **Domain.** Add `0daysecurity.tech` and `www.0daysecurity.tech` in Vercel → Settings → Domains, then create the DNS records Vercel shows at your domain provider.
+
+### Troubleshooting
+
+| What you see | What to do |
+| --- | --- |
+| Build fails with "DATABASE_URL is required" | Not expected any more — the database connects lazily. Make sure you deployed the latest code |
+| `getaddrinfo ENOTFOUND db.<project>.supabase.co` | You're using Supabase's direct connection. Switch to the Transaction pooler string |
+| `self-signed certificate in certificate chain` | Remove `sslmode=require` from `DATABASE_URL` (SSL is configured automatically), or set `DATABASE_CA_CERT` to the correct certificate |
+| `password authentication failed` / `Tenant or user not found` | Copy the pooler string again; the username looks like `postgres.<project-ref>` |
+| Connection timed out | Free Supabase projects pause after a week without activity — restore the project in the Supabase dashboard |
+| `relation "quote_requests" does not exist` | Run `npx drizzle-kit push` against the production database (step 2) |
+| 401 on a `*.vercel.app` preview URL | Vercel Deployment Protection is on (Settings → Deployment Protection) |
+
+Run `npm audit --omit=dev` to check the packages that ship with the site. The remaining warnings in a full `npm audit` come from development tools (`drizzle-kit`, `eslint-config-next`). They don't run on the live site, and the "fixes" npm suggests are downgrades, so don't apply them.
 
 ## Scripts
 

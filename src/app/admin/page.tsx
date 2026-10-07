@@ -1,12 +1,16 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import { tryResolveDatabaseConnection } from "@/db/connection";
+import { describeDatabaseError, type DatabaseProblem } from "@/db/errors";
 import { hasAdminSession } from "@/lib/admin-auth";
-import { getLeads, getLeadStats, LEADS_PAGE_SIZE, parseLeadFilters, type LeadFilters } from "@/lib/leads";
+import { getLeads, getLeadStats, LEADS_PAGE_SIZE, parseLeadFilters, type Lead, type LeadFilters } from "@/lib/leads";
 import { leadStatuses, leadStatusLabel } from "@/lib/lead-status";
 import { serviceLabel, services } from "@/lib/services";
 import { quoteReference, siteConfig } from "@/lib/site-config";
-import { deleteLead, logoutAction, updateLeadNotes, updateLeadStatus } from "./actions";
+import { deleteLead, updateLeadNotes, updateLeadStatus } from "./actions";
+import { AdminHeader } from "./admin-header";
+import { FixText } from "./fix-text";
 import { DeleteLeadForm, StatusSelect, SubmitButton } from "./lead-controls";
 
 export const dynamic = "force-dynamic";
@@ -58,7 +62,45 @@ export default async function AdminPage({
   if (!(await hasAdminSession())) redirect("/admin/login");
 
   const filters = parseLeadFilters(await searchParams);
-  const [stats, { rows, total }] = await Promise.all([getLeadStats(), getLeads(filters)]);
+
+  let data: { stats: Awaited<ReturnType<typeof getLeadStats>>; rows: Lead[]; total: number } | null = null;
+  let problem: DatabaseProblem | null = null;
+  try {
+    const [stats, list] = await Promise.all([getLeadStats(), getLeads(filters)]);
+    data = { stats, ...list };
+  } catch (error) {
+    console.error("Leads dashboard couldn't load leads:", error instanceof Error ? error.message : error);
+    problem = describeDatabaseError(error, tryResolveDatabaseConnection());
+  }
+
+  if (!data) {
+    return (
+      <>
+        <AdminHeader section="leads" />
+        <main className="mx-auto max-w-6xl px-5 pb-20 pt-10">
+          <p className="font-mono text-[11px] tracking-[0.18em] text-brand">QUOTE REQUESTS</p>
+          <h1 className="mt-2 font-display text-3xl font-bold uppercase tracking-tight sm:text-4xl">Leads dashboard</h1>
+          <div role="alert" className="mt-8 max-w-3xl border border-rose-300/30 bg-rose-400/[0.06] p-6">
+            <p className="font-mono text-[11px] tracking-[0.18em] text-rose-200">DATABASE PROBLEM</p>
+            <h2 className="mt-2 font-display text-xl font-semibold">We couldn’t load your leads</h2>
+            <p className="mt-2 text-sm leading-6 text-zinc-200">{problem?.title}</p>
+            {problem?.fix && (
+              <p className="mt-3 border-l-2 border-brand/60 pl-3 text-sm leading-6 text-zinc-400">
+                <span className="font-medium text-zinc-200">How to fix: </span>
+                <FixText text={problem.fix} />
+              </p>
+            )}
+            {problem?.code && <p className="mt-3 font-mono text-[11px] text-zinc-500">Error code: {problem.code}</p>}
+            <Link href="/admin/status" className="mt-5 inline-block font-mono text-xs text-brand transition hover:text-white">
+              Open the full system check →
+            </Link>
+          </div>
+        </main>
+      </>
+    );
+  }
+
+  const { stats, rows, total } = data;
   const totalPages = Math.max(1, Math.ceil(total / LEADS_PAGE_SIZE));
   const hasFilters = Boolean(filters.q) || filters.status !== "all" || filters.service !== "all";
   const exportHref = filterHref({ ...filters, page: 1 }, {}).replace(/^\/admin/, "/admin/export");
@@ -71,32 +113,7 @@ export default async function AdminPage({
 
   return (
     <>
-      <header className="sticky top-0 z-10 border-b border-white/10 bg-black/90 backdrop-blur">
-        <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-5 py-4">
-          <div className="flex min-w-0 items-baseline gap-3">
-            <a href="/" className="truncate font-logo text-xl font-bold tracking-tight sm:text-2xl">
-              {siteConfig.name}
-            </a>
-            <span className="hidden font-mono text-xs text-zinc-500 sm:inline">/ leads</span>
-          </div>
-          <div className="flex shrink-0 items-center gap-1.5 sm:gap-3">
-            <a href="/" className="hidden font-mono text-xs text-zinc-400 transition hover:text-white md:inline">
-              View site ↗
-            </a>
-            <a
-              href={exportHref}
-              className="border border-white/15 px-3 py-2 font-mono text-xs transition hover:border-brand hover:text-brand"
-            >
-              Export CSV
-            </a>
-            <form action={logoutAction}>
-              <button type="submit" className="px-2 py-2 font-mono text-xs text-zinc-400 transition hover:text-white sm:px-3">
-                Log out
-              </button>
-            </form>
-          </div>
-        </div>
-      </header>
+      <AdminHeader section="leads" exportHref={exportHref} />
 
       <main className="mx-auto max-w-6xl px-5 pb-20 pt-10">
         <p className="font-mono text-[11px] tracking-[0.18em] text-brand">QUOTE REQUESTS</p>

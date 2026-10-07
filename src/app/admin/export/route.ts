@@ -20,7 +20,16 @@ export async function GET(request: NextRequest) {
   }
 
   const filters = parseLeadFilters(Object.fromEntries(request.nextUrl.searchParams));
-  const rows = await getLeadsForExport(filters);
+  let rows: Awaited<ReturnType<typeof getLeadsForExport>>;
+  try {
+    rows = await getLeadsForExport(filters);
+  } catch (error) {
+    console.error("CSV export failed:", error instanceof Error ? error.message : error);
+    return new Response("The database isn't reachable, so leads couldn't be exported. Open /admin/status for details.", {
+      status: 503,
+      headers: { "Content-Type": "text/plain; charset=utf-8", "Cache-Control": "no-store" },
+    });
+  }
   const header = ["Reference", "Received (UTC)", "Status", "Name", "Email", "Organisation", "Service", "Message", "Internal notes"];
   const lines = [
     header.map(cell).join(","),
