@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Trusted by — 0DAY Security</title>
+    <!--
+      Preview only: this script loads Tailwind CSS in the browser, so you can open this file directly.
+      In a real project, use your normal Tailwind setup and copy the <section> and <style> below.
+    -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  </head>
+  <body class="flex min-h-screen flex-col justify-center bg-black text-white antialiased">
+    <!-- ================= Trusted by: copy from here ================= -->
+    <section aria-labelledby="clients-title" class="overflow-x-clip border-y border-white/10 bg-[#050505] py-7">
+      <div class="mx-auto flex w-full max-w-6xl flex-col gap-4 px-5 lg:flex-row lg:items-center lg:gap-12">
+        <h2 id="clients-title" class="flex shrink-0 items-center justify-center gap-3 font-mono text-xs uppercase tracking-[0.18em] whitespace-nowrap text-zinc-400 lg:justify-start">
+          <span aria-hidden="true" class="h-0.5 w-6 shrink-0 bg-[#de5cff]"></span>
+          Trusted by
+        </h2>
+
+        <!-- Two identical groups scroll as one seamless loop. The second is hidden from screen readers. -->
+        <div class="marquee group flex min-w-0 flex-1 gap-[4.5rem] overflow-hidden [mask-image:linear-gradient(90deg,transparent,#000_9%,#000_91%,transparent)]">
+          <ul aria-label="Clients" class="marquee-group flex min-w-full shrink-0 items-center justify-around gap-[4.5rem] group-hover:[animation-play-state:paused]">
+            <li class="flex h-14 shrink-0 items-center"><span class="text-lg font-semibold tracking-tight whitespace-nowrap text-white/65">Eros Group</span></li>
+            <!-- A logo: "brightness-0 invert" shows any transparent logo in white. Update the path for your project. -->
+            <li class="flex h-14 shrink-0 items-center"><img src="../public/clients/serviz4u.png" alt="Serviz4u" class="h-7 w-auto max-w-[170px] object-contain opacity-70 brightness-0 invert" /></li>
+            <li class="flex h-14 shrink-0 items-center"><span class="text-lg font-semibold tracking-tight whitespace-nowrap text-white/65">ACME</span></li>
+            <li class="flex h-14 shrink-0 items-center"><span class="text-lg font-semibold tracking-tight whitespace-nowrap text-white/65">Swartzchild Home</span></li>
+          </ul>
+          <ul aria-hidden="true" class="marquee-group flex min-w-full shrink-0 items-center justify-around gap-[4.5rem] group-hover:[animation-play-state:paused]">
+            <li class="flex h-14 shrink-0 items-center"><span class="text-lg font-semibold tracking-tight whitespace-nowrap text-white/65">Eros Group</span></li>
+            <li class="flex h-14 shrink-0 items-center"><img src="../public/clients/serviz4u.png" alt="" class="h-7 w-auto max-w-[170px] object-contain opacity-70 brightness-0 invert" /></li>
+            <li class="flex h-14 shrink-0 items-center"><span class="text-lg font-semibold tracking-tight whitespace-nowrap text-white/65">ACME</span></li>
+            <li class="flex h-14 shrink-0 items-center"><span class="text-lg font-semibold tracking-tight whitespace-nowrap text-white/65">Swartzchild Home</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <style>
+      .marquee-group { animation: marquee-scroll 26s linear infinite; }
+      @keyframes marquee-scroll { to { transform: translate3d(calc(-100% - 4.5rem), 0, 0); } }
+      @media (prefers-reduced-motion: reduce) {
+        .marquee-group { flex-wrap: wrap; justify-content: center; animation: none; }
+        .marquee-group[aria-hidden="true"] { display: none; }
+      }
+    </style>
+    <!-- ================= Trusted by: copy to here ================= -->
+  </body>
+</html>
