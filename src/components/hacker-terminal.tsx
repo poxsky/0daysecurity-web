@@ -9,11 +9,14 @@ type Line = { id: number; kind: LineKind; text: string };
 type HackerTerminalProps = { open: boolean; onClose: () => void; onQuote: () => void };
 
 const PROMPT = `guest@${siteConfig.terminalHost}:~$`;
-const COMMANDS = ["help", "whoami", "ls", "services", "cat", "contact", "quote", "date", "history", "clear", "exit"];
+const COMMANDS = ["help", "whoami", "founder", "cves", "hof", "ls", "services", "cat", "contact", "quote", "date", "history", "clear", "exit"];
 const FILES = [...services.map((service) => service.value), "quote.sh"];
 const HELP: [string, string][] = [
   ["help", "show available commands"],
   ["whoami", "who are you, really?"],
+  ["founder", "about lead researcher Anmol Singh Rajput"],
+  ["cves", "published zero-day & critical CVE advisories"],
+  ["hof", "global bug bounty Hall of Fame recognitions"],
   ["ls", "list service files"],
   ["cat <service>", "read about a service"],
   ["services", "everything we test"],
@@ -74,6 +77,38 @@ export function HackerTerminal({ open, onClose, onQuote }: HackerTerminalProps) 
         break;
       case "whoami":
         output.push(makeLine("output", "guest — a curious visitor. We like curious."));
+        break;
+      case "founder":
+        output.push(
+          makeLine("accent", `${siteConfig.founder.name} (${siteConfig.founder.pronouns})`),
+          makeLine("output", siteConfig.founder.role),
+          makeLine("output", siteConfig.founder.headline),
+          makeLine("output", `Speaking: ${siteConfig.founder.speaking}`),
+          makeLine("output", `LinkedIn: ${siteConfig.founder.linkedin}`),
+        );
+        break;
+      case "cve":
+      case "cves":
+        output.push(
+          makeLine("accent", "Published CVE Advisories:"),
+          makeLine("output", "CVE-2026-24516 [CVSS 10.0 CRITICAL] DigitalOcean Droplet Agent Root RCE"),
+          makeLine("output", "CVE-2026-38577 [CVSS 8.8 HIGH]     Tenda HG21 Hardcoded Root Credentials"),
+          makeLine("output", "CVE-2026-117325 [CVSS 7.5 HIGH]    FreeRDP Progressive Graphics DoS"),
+          makeLine("output", "CVE-2025-66961 [CVSS 8.5 HIGH]     Cherry-Studio TrendRadar Command Injection"),
+          makeLine("output", "CVE-2025-66962 [CVSS 6.5 MEDIUM]   Moonshile ChineseWordSeg Memory Exhaustion"),
+          makeLine("output", "CVE-2026-89092 [CVSS 8.2 HIGH]     0DAY Security Responsible Disclosure"),
+          makeLine("muted", "Full details available at: https://0daysecurity.tech/research"),
+        );
+        break;
+      case "hof":
+        output.push(
+          makeLine("accent", "100+ Hall of Fame Recognitions:"),
+          makeLine("output", "★ Google (Vulnerability Reward Program)"),
+          makeLine("output", "★ YesWeHack Global (Verified Top Rank - gearhead5598)"),
+          makeLine("output", "★ Webflow (Responsible Disclosure Hall of Fame)"),
+          makeLine("output", "★ Coopérative U - U TECHNO (Medal of Recognition)"),
+          makeLine("output", "★ Kaia Web & Superposition Finance Web"),
+        );
         break;
       case "ls":
         output.push(makeLine("output", FILES.map((file) => (file.endsWith(".sh") ? file : `${file}/`)).join("  ")));

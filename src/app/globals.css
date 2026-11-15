@@ -205,6 +205,15 @@ html.lenis, html.lenis body { height: auto; }
 .why-card h3 { margin-bottom: 10px; font-family: var(--font-poppins), sans-serif; font-size: 19px; font-weight: 500; line-height: 27px; }
 .why-card p { color: #979797; font-size: 15px; line-height: 26px; }
 
+/* ---------- Standards & Methodologies Banner ---------- */
+.standards-banner { background: #070707; border-top: 1px solid #1a1a1a; border-bottom: 1px solid #1a1a1a; padding: 22px 0; }
+.standards-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+.standards-label { font-family: var(--font-mono), monospace; font-size: 11px; letter-spacing: 1.5px; color: var(--purple); font-weight: 700; }
+.standards-list { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; list-style: none; padding: 0; margin: 0; }
+.standard-tag { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; background: #0d0d0d; border: 1px solid #222; border-radius: 4px; font-family: var(--font-mono), monospace; font-size: 12px; }
+.standard-name { color: #fff; font-weight: 600; }
+.standard-sub { color: #666; font-size: 11px; }
+
 /* ---------- Research & CVE Advisories ---------- */
 .research-section { padding: 9rem 0; background: #000; border-top: 1px solid #1a1a1a; }
 .research-intro { max-width: 680px; margin-top: 20px; color: #a3a3a3; font-size: 16px; line-height: 28px; }

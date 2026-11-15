@@ -15,6 +15,7 @@ import { SiteHeader } from "@/components/site-header";
 import { TypedSubtitle } from "@/components/typed-subtitle";
 import { WhySection } from "@/components/why-section";
 import { ResearchSection } from "@/components/research-section";
+import { StandardsBanner } from "@/components/standards-banner";
 import type { ClientWithLogo } from "@/lib/clients";
 import { finalCta } from "@/lib/content";
 import { revealDelay } from "@/lib/reveal";
@@ -133,6 +134,7 @@ export function SecuritySite({ clients }: { clients: ClientWithLogo[] }) {
         </section>
 
         <ClientsSection clients={clients} />
+        <StandardsBanner />
         <AboutSection />
         <ServicesSection activeId={activeService} onSelect={selectService} onQuote={openQuote} />
         <ProcessSection />

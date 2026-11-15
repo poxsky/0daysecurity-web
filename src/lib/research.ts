@@ -102,8 +102,14 @@ export const cveList: CVEItem[] = [
 
 export const hallOfFameList: HallOfFameItem[] = [
   {
-    name: "YesWeHack",
-    platform: "YesWeHack Global Bug Bounty",
+    name: "Google (Vulnerability Reward Program)",
+    platform: "Google Security Rewards",
+    badge: "Hall of Fame Recognition",
+    category: "Enterprise",
+  },
+  {
+    name: "YesWeHack Global",
+    platform: "Global Bug Bounty Leaderboard",
     hunter: "gearhead5598",
     badge: "Verified Hunter · Top Rank",
     category: "Enterprise",

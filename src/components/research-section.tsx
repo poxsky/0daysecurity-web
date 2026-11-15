@@ -1,5 +1,7 @@
+import Link from "next/link";
 import { cveList, hallOfFameList } from "@/lib/research";
 import { revealDelay } from "@/lib/reveal";
+import { siteConfig } from "@/lib/site-config";
 
 export function ResearchSection() {
   return (
@@ -58,6 +60,29 @@ export function ResearchSection() {
               </div>
             </article>
           ))}
+        </div>
+
+        <div data-reveal style={{ textAlign: "center", marginTop: "36px", ...revealDelay(120) }}>
+          <Link
+            href="/research"
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "10px",
+              padding: "13px 24px",
+              border: "1px solid rgba(222, 92, 255, 0.4)",
+              background: "rgba(222, 92, 255, 0.08)",
+              color: "#fff",
+              borderRadius: "4px",
+              fontSize: "13px",
+              fontFamily: "var(--font-mono)",
+              textTransform: "uppercase",
+              letterSpacing: "0.5px",
+              transition: "all 0.2s ease",
+            }}
+          >
+            Explore Complete Research Dossier & Founder Profile ↗
+          </Link>
         </div>
 
         {/* Hall of Fame Highlights */}
