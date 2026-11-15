@@ -43,6 +43,7 @@ export default function ResearchPage() {
 
         {/* Lead Profile Banner */}
         <section
+          id="founder"
           style={{
             background: "radial-gradient(ellipse 70% 90% at 85% 20%, rgba(192, 0, 240, 0.12), transparent 70%), #0a0a0a",
             border: "1px solid #222",

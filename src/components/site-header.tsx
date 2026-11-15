@@ -4,15 +4,16 @@ import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { siteConfig } from "@/lib/site-config";
 
 const navLinks = [
-  { id: "services", label: "Services" },
-  { id: "research", label: "Research & CVEs" },
-  { id: "process", label: "Process" },
-  { id: "why-us", label: "Why us" },
-  { id: "faq", label: "FAQ" },
-  { id: "contact", label: "Contact" },
+  { id: "services", label: "Services", href: "#services" },
+  { id: "research", label: "Research & Track Record", href: "/research" },
+  { id: "contact", label: "Contact", href: "#contact" },
 ];
-const menuLinks = [{ id: "about", label: "About" }, ...navLinks];
-const SECTION_IDS = ["home", "clients", "about", "services", "research", "process", "why-us", "faq", "cta", "contact"];
+const menuLinks = [
+  { id: "services", label: "Services", href: "#services" },
+  { id: "research", label: "Research & Track Record", href: "/research" },
+  { id: "contact", label: "Contact", href: "#contact" },
+];
+const SECTION_IDS = ["home", "services", "research-gateway", "contact"];
 
 export function SiteHeader({ onQuote }: { onQuote: () => void }) {
   const [scrolled, setScrolled] = useState(false);
@@ -90,7 +91,7 @@ export function SiteHeader({ onQuote }: { onQuote: () => void }) {
           {navLinks.map((link) => (
             <a
               key={link.id}
-              href={`#${link.id}`}
+              href={link.href}
               className={`nav-link${active === link.id ? " is-active" : ""}`}
               aria-current={active === link.id ? "true" : undefined}
             >
@@ -132,7 +133,7 @@ export function SiteHeader({ onQuote }: { onQuote: () => void }) {
             <ol className="menu-links">
               {menuLinks.map((link, index) => (
                 <li key={link.id} style={{ "--i": index } as CSSProperties}>
-                  <a href={`#${link.id}`} onClick={closeMenu} aria-current={active === link.id ? "true" : undefined}>
+                  <a href={link.href} onClick={closeMenu} aria-current={active === link.id ? "true" : undefined}>
                     <span className="menu-index" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
                     {link.label}
                   </a>

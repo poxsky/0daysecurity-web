@@ -1,24 +1,17 @@
 "use client";
 
+import Link from "next/link";
 import Script from "next/script";
 import { useEffect, useState } from "react";
-import { AboutSection } from "@/components/about-section";
 import { ClientsSection } from "@/components/clients-section";
-import { FaqSection } from "@/components/faq-section";
 import { HackerTerminal } from "@/components/hacker-terminal";
 import { MouseIcon } from "@/components/icons";
-import { ProcessSection } from "@/components/process-section";
 import { QuoteDialog } from "@/components/quote-dialog";
 import { ServicesSection } from "@/components/services-section";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
-import { TypedSubtitle } from "@/components/typed-subtitle";
-import { WhySection } from "@/components/why-section";
-import { ResearchSection } from "@/components/research-section";
 import { StandardsBanner } from "@/components/standards-banner";
 import type { ClientWithLogo } from "@/lib/clients";
-import { finalCta } from "@/lib/content";
-import { revealDelay } from "@/lib/reveal";
 import { services } from "@/lib/services";
 import { siteConfig } from "@/lib/site-config";
 import { scrollToElement, useSmoothScroll } from "@/lib/smooth-scroll";
@@ -104,60 +97,65 @@ export function SecuritySite({ clients }: { clients: ClientWithLogo[] }) {
 
   return (
     <>
-      <a className="skip-link" href="#about">Skip to content</a>
+      <a className="skip-link" href="#services">Skip to services</a>
       <SiteHeader onQuote={openQuote} />
 
       <main id="top">
+        {/* Full Screen Hero with fluid canvas matching Day Zero Security */}
         <section className="hero" id="home" aria-labelledby="hero-title">
           <canvas id="fluid-canvas" className="fluid-canvas" aria-hidden="true" />
           <div className="hero-text">
-            <TypedSubtitle />
             <h1 id="hero-title">
               <AccentLines lines={siteConfig.heroTitle} />
             </h1>
-            <p className="hero-lead">{siteConfig.heroLead}</p>
+            <h2 className="hero-subtitle">
+              Offensive security specialists
+            </h2>
             <div className="hero-actions">
               <button type="button" className="hero-cta" onClick={openQuote} aria-haspopup="dialog">
-                {finalCta.button} <span aria-hidden="true">↗</span>
+                Get a quote <span aria-hidden="true">↗</span>
               </button>
               <a href="#services" className="hero-link">Explore services</a>
             </div>
-            <ul className="hero-proof" aria-label="Our track record">
-              {siteConfig.proofPoints.map((point) => (
-                <li key={point}>{point}</li>
-              ))}
-            </ul>
           </div>
-          <a href={clients.length > 0 ? "#clients" : "#about"} className="scroll-down" aria-label="Scroll down">
+          <a href="#services" className="scroll-down" aria-label="Scroll down to services">
             <MouseIcon />
           </a>
         </section>
 
-        <ClientsSection clients={clients} />
+        {/* Benchmarked Testing Standards */}
         <StandardsBanner />
-        <AboutSection />
-        <ServicesSection activeId={activeService} onSelect={selectService} onQuote={openQuote} />
-        <ProcessSection />
-        <WhySection />
-        <ResearchSection />
-        <FaqSection onQuote={openQuote} />
 
-        <section className="cta-band" id="cta" aria-labelledby="cta-title">
+        {/* Clean Services Section with Interactive Tabs */}
+        <ServicesSection activeId={activeService} onSelect={selectService} onQuote={openQuote} />
+
+        {/* Clean Gateway to the Detailed Next Page */}
+        <section className="research-gateway-section" id="research-gateway">
           <div className="site-container">
-            <h2 id="cta-title" data-reveal>
-              <AccentLines lines={finalCta.title} />
-            </h2>
-            <div className="cta-row" data-reveal style={revealDelay(120)}>
-              <p>{finalCta.body}</p>
-              <div className="cta-buttons">
-                <button type="button" className="cta-button" onClick={openQuote} aria-haspopup="dialog">
-                  {finalCta.button} <span aria-hidden="true">↗</span>
+            <div className="research-gateway-card" data-reveal>
+              <div className="gateway-badge">RESEARCH & LEADERSHIP DOSSIER</div>
+              <h3 className="gateway-title">
+                Proof, not promises. Zero-day research & credited CVEs.
+              </h3>
+              <p className="gateway-desc">
+                We believe offensive security credibility must be proven on the public record. 
+                Explore our published CVE advisories (including CVSS 10.0 Root RCEs), 100+ global Hall of Fame recognitions (Google, Webflow, YesWeHack), 
+                and leadership dossier for principal researcher <strong>Anmol Singh Rajput</strong>.
+              </p>
+              <div className="gateway-actions">
+                <Link href="/research" className="gateway-btn">
+                  View Full Research Dossier & CVEs →
+                </Link>
+                <button type="button" className="gateway-quote-btn" onClick={openQuote}>
+                  Schedule Free Scoping Call ↗
                 </button>
-                <a className="cta-phone" href={siteConfig.phone.href}>Or call {siteConfig.phone.display}</a>
               </div>
             </div>
           </div>
         </section>
+
+        {/* Marquee: Responsible Disclosures & Platforms */}
+        <ClientsSection clients={clients} />
       </main>
 
       <SiteFooter onQuote={openQuote} onTerminal={() => setTerminalOpen(true)} onService={goToService} />

@@ -4,11 +4,10 @@ import { services } from "@/lib/services";
 import { siteConfig } from "@/lib/site-config";
 
 const companyLinks = [
-  { href: "#about", label: "About us" },
-  { href: "#research", label: "Research & CVEs" },
-  { href: "#process", label: "How we work" },
-  { href: "#why-us", label: "Why 0DAY" },
-  { href: "#faq", label: "FAQ" },
+  { href: "/#services", label: "Services" },
+  { href: "/research", label: "Research & Track Record" },
+  { href: "/research#founder", label: "Leadership Dossier" },
+  { href: "/privacy", label: "Privacy notice" },
 ];
 
 type SiteFooterProps = {

@@ -205,6 +205,18 @@ html.lenis, html.lenis body { height: auto; }
 .why-card h3 { margin-bottom: 10px; font-family: var(--font-poppins), sans-serif; font-size: 19px; font-weight: 500; line-height: 27px; }
 .why-card p { color: #979797; font-size: 15px; line-height: 26px; }
 
+/* ---------- Research Gateway (Clean Day Zero Bridge) ---------- */
+.research-gateway-section { padding: 6rem 0; background: #070707; border-top: 1px solid #1a1a1a; border-bottom: 1px solid #1a1a1a; }
+.research-gateway-card { display: flex; flex-direction: column; align-items: flex-start; gap: 18px; padding: 44px 40px; background: radial-gradient(ellipse 70% 90% at 90% 20%, rgba(192, 0, 240, 0.12), transparent 70%), #0d0d0d; border: 1px solid #222; border-radius: 6px; }
+.gateway-badge { font-family: var(--font-mono), monospace; font-size: 11px; letter-spacing: 1.5px; color: var(--purple); font-weight: 700; text-transform: uppercase; }
+.gateway-title { font-family: var(--font-poppins), sans-serif; font-size: clamp(1.6rem, 2.4vw, 32px); font-weight: 700; line-height: 1.25; color: #fff; margin: 0; }
+.gateway-desc { font-size: 16px; color: #a1a1a1; line-height: 1.6; max-width: 720px; margin: 0; }
+.gateway-actions { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; margin-top: 10px; }
+.gateway-btn { display: inline-flex; align-items: center; gap: 10px; padding: 13px 24px; background: var(--dark-purple); color: #fff; border-radius: 4px; font-family: var(--font-mono), monospace; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; transition: background .2s, transform .2s; }
+.gateway-btn:hover { background: var(--purple); transform: translateY(-1px); }
+.gateway-quote-btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 20px; border: 1px solid #333; color: #ccc; border-radius: 4px; font-family: var(--font-mono), monospace; font-size: 13px; transition: border-color .2s, color .2s; }
+.gateway-quote-btn:hover { border-color: var(--purple); color: #fff; }
+
 /* ---------- Standards & Methodologies Banner ---------- */
 .standards-banner { background: #070707; border-top: 1px solid #1a1a1a; border-bottom: 1px solid #1a1a1a; padding: 22px 0; }
 .standards-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
