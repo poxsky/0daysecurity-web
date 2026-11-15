@@ -205,6 +205,46 @@ html.lenis, html.lenis body { height: auto; }
 .why-card h3 { margin-bottom: 10px; font-family: var(--font-poppins), sans-serif; font-size: 19px; font-weight: 500; line-height: 27px; }
 .why-card p { color: #979797; font-size: 15px; line-height: 26px; }
 
+/* ---------- Research & CVE Advisories ---------- */
+.research-section { padding: 9rem 0; background: #000; border-top: 1px solid #1a1a1a; }
+.research-intro { max-width: 680px; margin-top: 20px; color: #a3a3a3; font-size: 16px; line-height: 28px; }
+.cve-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; margin-top: 50px; }
+.cve-card { display: flex; flex-direction: column; justify-content: space-between; padding: 28px; background: #080808; border: 1px solid #1e1e1e; border-radius: 4px; transition: border-color .3s, transform .3s; }
+.cve-card:hover { border-color: var(--purple); transform: translateY(-3px); }
+.cve-card-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 14px; }
+.cve-id { font-family: var(--font-mono), monospace; font-size: 13px; font-weight: 700; color: #ffffff; letter-spacing: 0.5px; }
+.cve-severity { display: inline-flex; align-items: center; padding: 2px 8px; border-radius: 3px; font-family: var(--font-mono), monospace; font-size: 11px; font-weight: 700; text-transform: uppercase; }
+.severity-critical { background: rgba(222, 92, 255, 0.15); color: #de5cff; border: 1px solid rgba(222, 92, 255, 0.35); box-shadow: 0 0 12px rgba(222, 92, 255, 0.2); }
+.severity-high { background: rgba(255, 87, 87, 0.15); color: #ff6b6b; border: 1px solid rgba(255, 87, 87, 0.3); }
+.severity-medium { background: rgba(255, 184, 0, 0.12); color: #ffb800; border: 1px solid rgba(255, 184, 0, 0.25); }
+.cve-title { margin-bottom: 10px; font-family: var(--font-poppins), sans-serif; font-size: 17px; font-weight: 600; line-height: 24px; color: #fff; }
+.cve-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-bottom: 14px; font-family: var(--font-mono), monospace; font-size: 12px; color: #7f7f7f; }
+.cve-dot { color: #444; }
+.cve-desc { color: #a1a1a1; font-size: 14px; line-height: 24px; margin-bottom: 20px; }
+.cve-card-bottom { display: flex; align-items: center; justify-content: space-between; padding-top: 14px; border-top: 1px solid #181818; font-size: 12px; font-family: var(--font-mono), monospace; }
+.cve-status { display: inline-flex; align-items: center; gap: 6px; color: #888; }
+.status-indicator { width: 6px; height: 6px; border-radius: 50%; background: #00ff66; box-shadow: 0 0 8px rgba(0, 255, 102, 0.6); }
+.cve-link { color: var(--purple); transition: color .2s; }
+.cve-link:hover { color: #fff; text-decoration: underline; }
+
+/* Hall of Fame Band */
+.hof-band { margin-top: 60px; padding: 36px 32px; background: radial-gradient(ellipse 60% 80% at 50% 0%, rgba(222, 92, 255, 0.08), transparent 70%), #050505; border: 1px solid #1a1a1a; border-radius: 4px; }
+.hof-header { margin-bottom: 24px; }
+.hof-header h3 { font-family: var(--font-poppins), sans-serif; font-size: 20px; font-weight: 600; color: #fff; }
+.hof-header p { margin-top: 6px; color: #8c8c8c; font-size: 14px; }
+.hof-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.hof-card { display: flex; align-items: center; gap: 14px; padding: 14px 18px; background: #0d0d0d; border: 1px solid #1f1f1f; border-radius: 4px; }
+.hof-badge-icon { display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 50%; background: rgba(222, 92, 255, 0.12); color: var(--purple); font-size: 14px; flex-shrink: 0; }
+.hof-info { display: flex; flex-direction: column; gap: 2px; }
+.hof-name { font-family: var(--font-poppins), sans-serif; font-size: 14px; font-weight: 600; color: #fff; }
+.hof-platform { font-size: 12px; color: #7f7f7f; font-family: var(--font-mono), monospace; }
+.hof-pill { display: inline-block; margin-top: 2px; font-size: 10px; font-family: var(--font-mono), monospace; color: var(--purple); }
+
+@media (max-width: 900px) {
+  .cve-grid { grid-template-columns: 1fr; }
+  .hof-grid { grid-template-columns: 1fr; }
+}
+
 /* ---------- FAQ ---------- */
 .faq-section { padding: 9rem 0; background: #000; border-top: 1px solid #1a1a1a; }
 .faq-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.7fr); gap: 80px; }

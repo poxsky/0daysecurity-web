@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 import localFont from "next/font/local";
 import { siteConfig } from "@/lib/site-config";
+import { JsonLd } from "@/components/json-ld";
 import "./globals.css";
 
 const poppins = localFont({
@@ -38,16 +39,56 @@ const roboto = localFont({
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
-  title: `${siteConfig.name} — Offensive Security Services`,
-  description: siteConfig.description,
+  title: "0DAY Security (Zero-Day) | Advanced VAPT, Red Teaming & Offensive Security",
+  description:
+    "0DAY Security is an offensive cybersecurity firm specializing in zero-day (0day) vulnerability research, VAPT, red teaming, and regulatory audits (ISO 27001, SOC 2, DPDP, CERT-In). Powered by credited CVE researchers and Hall of Fame hackers.",
+  keywords: [
+    "0day security",
+    "zero-day security",
+    "0day security testing",
+    "zero-day protection",
+    "cybersecurity company",
+    "cyber security",
+    "VAPT services",
+    "penetration testing company",
+    "red teaming",
+    "offensive security",
+    "vulnerability research",
+    "CERT-In security audit",
+    "cloud security assessment",
+    "application security testing",
+    "SOC 2 readiness",
+    "ISO 27001 audit",
+  ],
+  alternates: {
+    canonical: siteConfig.url,
+  },
   openGraph: {
-    title: `${siteConfig.name} — ${siteConfig.slogan}`,
+    title: "0DAY Security (Zero-Day) | Advanced VAPT & Offensive Security",
     description:
-      "Offensive security services: VAPT, red teaming, application & cloud security, GRC & compliance, government & regulatory audits, security training and virtual CISO advisory.",
+      "Manual attacker-grade testing, zero-day research, CVE credited findings, and full compliance readiness (ISO 27001, SOC 2, DPDP, CERT-In).",
+    url: siteConfig.url,
     siteName: siteConfig.name,
     type: "website",
+    locale: "en_US",
   },
-  twitter: { card: "summary_large_image" },
+  twitter: {
+    card: "summary_large_image",
+    title: "0DAY Security (Zero-Day) | Advanced VAPT & Offensive Security",
+    description:
+      "Offensive security testing, zero-day research, and compliance audits by verified CVE researchers and Hall of Fame hackers.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
 };
 
 export const viewport: Viewport = { themeColor: "#0d0d0d", colorScheme: "dark" };
@@ -55,6 +96,9 @@ export const viewport: Viewport = { themeColor: "#0d0d0d", colorScheme: "dark" }
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" className={`${poppins.variable} ${anonymousPro.variable} ${robotoMono.variable} ${roboto.variable}`}>
+      <head>
+        <JsonLd />
+      </head>
       <body>{children}</body>
     </html>
   );

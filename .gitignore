@@ -44,3 +44,5 @@ next-env.d.ts
 
 # local verification artifacts
 .reference/
+.agents/
+skills-lock.json

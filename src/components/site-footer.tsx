@@ -5,6 +5,7 @@ import { siteConfig } from "@/lib/site-config";
 
 const companyLinks = [
   { href: "#about", label: "About us" },
+  { href: "#research", label: "Research & CVEs" },
   { href: "#process", label: "How we work" },
   { href: "#why-us", label: "Why 0DAY" },
   { href: "#faq", label: "FAQ" },

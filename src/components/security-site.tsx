@@ -14,6 +14,7 @@ import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { TypedSubtitle } from "@/components/typed-subtitle";
 import { WhySection } from "@/components/why-section";
+import { ResearchSection } from "@/components/research-section";
 import type { ClientWithLogo } from "@/lib/clients";
 import { finalCta } from "@/lib/content";
 import { revealDelay } from "@/lib/reveal";
@@ -136,6 +137,7 @@ export function SecuritySite({ clients }: { clients: ClientWithLogo[] }) {
         <ServicesSection activeId={activeService} onSelect={selectService} onQuote={openQuote} />
         <ProcessSection />
         <WhySection />
+        <ResearchSection />
         <FaqSection onQuote={openQuote} />
 
         <section className="cta-band" id="cta" aria-labelledby="cta-title">

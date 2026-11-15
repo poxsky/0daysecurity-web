@@ -5,13 +5,14 @@ import { siteConfig } from "@/lib/site-config";
 
 const navLinks = [
   { id: "services", label: "Services" },
+  { id: "research", label: "Research & CVEs" },
   { id: "process", label: "Process" },
   { id: "why-us", label: "Why us" },
   { id: "faq", label: "FAQ" },
   { id: "contact", label: "Contact" },
 ];
 const menuLinks = [{ id: "about", label: "About" }, ...navLinks];
-const SECTION_IDS = ["home", "clients", "about", "services", "process", "why-us", "faq", "cta", "contact"];
+const SECTION_IDS = ["home", "clients", "about", "services", "research", "process", "why-us", "faq", "cta", "contact"];
 
 export function SiteHeader({ onQuote }: { onQuote: () => void }) {
   const [scrolled, setScrolled] = useState(false);
