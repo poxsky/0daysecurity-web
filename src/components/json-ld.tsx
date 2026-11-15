@@ -15,9 +15,20 @@ export function JsonLd() {
     email: siteConfig.email,
     telephone: siteConfig.phone.display,
     sameAs: [
+      siteConfig.founder.linkedin,
       "https://github.com/poxsky",
       "https://x.com/poxsky",
     ],
+    founder: {
+      "@type": "Person",
+      name: siteConfig.founder.name,
+      jobTitle: siteConfig.founder.role,
+      url: siteConfig.founder.linkedin,
+      sameAs: [
+        siteConfig.founder.linkedin,
+        "https://github.com/poxsky",
+      ],
+    },
     knowsAbout: [
       "Zero-Day Vulnerability Research",
       "Vulnerability Assessment & Penetration Testing (VAPT)",
