@@ -19,9 +19,9 @@ export function ResearchSection() {
           </p>
         </div>
 
-        {/* CVE Grid */}
+        {/* CVE Grid - Featured Top 3 on Homepage */}
         <div className="cve-grid">
-          {cveList.map((cve, index) => (
+          {cveList.slice(0, 3).map((cve, index) => (
             <article
               key={cve.id}
               className="cve-card"
@@ -69,19 +69,20 @@ export function ResearchSection() {
               display: "inline-flex",
               alignItems: "center",
               gap: "10px",
-              padding: "13px 24px",
-              border: "1px solid rgba(222, 92, 255, 0.4)",
-              background: "rgba(222, 92, 255, 0.08)",
+              padding: "14px 28px",
+              border: "1px solid rgba(222, 92, 255, 0.5)",
+              background: "rgba(222, 92, 255, 0.1)",
               color: "#fff",
               borderRadius: "4px",
               fontSize: "13px",
               fontFamily: "var(--font-mono)",
               textTransform: "uppercase",
               letterSpacing: "0.5px",
-              transition: "all 0.2s ease",
+              fontWeight: 600,
+              boxShadow: "0 0 20px rgba(192, 0, 240, 0.15)",
             }}
           >
-            Explore Complete Research Dossier & Founder Profile ↗
+            Explore Complete Research Dossier & Full CVE List (10+ Published) →
           </Link>
         </div>
 

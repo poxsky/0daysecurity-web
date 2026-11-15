@@ -2,16 +2,16 @@
  * Central brand, hero copy and contact settings.
  * Change these values to update the whole website in one place.
  */
-const heroTitle: [string, string] = ["Hacked by us.", "Not by them."];
+const heroTitle: [string, string] = ["Security.", "From day zero."];
 
 export const siteConfig = {
   name: "0DAY Security",
   /** Big two-line hero headline. The last word of line two is highlighted in purple. */
   heroTitle,
-  slogan: heroTitle.join(" "),
+  slogan: "Serious security for serious businesses.",
   /** Supporting line under the hero headline. */
   heroLead:
-    "We break in the way real attackers would — with your permission. Then we help you fix every finding and prove your security to auditors, regulators and customers.",
+    "Offensive security specialists. Serious security for serious businesses. We break in the way real adversaries do — with your permission. Then we help you close every gap and prove your posture to boards and auditors.",
   /** Short credibility points shown under the hero buttons. */
   proofPoints: ["10+ Published CVEs (Root RCE)", "100+ Global Hall of Fames", "100% Manually Validated Findings"],
   /** Phrases typed out above the headline. The first one is shown when the page loads. */
