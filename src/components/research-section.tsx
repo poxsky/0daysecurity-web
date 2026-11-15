@@ -3,19 +3,20 @@ import { cveList, hallOfFameList } from "@/lib/research";
 import { revealDelay } from "@/lib/reveal";
 import { siteConfig } from "@/lib/site-config";
 
-export function ResearchSection() {
+export function ResearchSection({ onQuote }: { onQuote?: () => void }) {
   return (
     <section className="research-section" id="research" aria-labelledby="research-title">
       <div className="site-container">
         <div className="section-head" data-reveal>
-          <p className="section-label" id="research-title">OFFENSIVE RESEARCH & TRACK RECORD</p>
+          <p className="section-label" id="research-title">RESEARCH & LEADERSHIP DOSSIER</p>
           <h2 className="section-statement">
             <span>Proof, not promises.</span>
-            <span className="accent"> Real CVEs & Disclosures.</span>
+            <span className="accent"> Zero-day research & credited CVEs.</span>
           </h2>
           <p className="research-intro">
-            We don’t just run automated scans. Our researchers discover zero-day flaws, publish coordinated CVE advisories,
-            and rank in global Bug Bounty Halls of Fame. This deep attacker expertise is what protects your systems.
+            We believe offensive security credibility must be proven on the public record. 
+            Explore our published CVE advisories (including CVSS 10.0 Root RCEs), 100+ global Hall of Fame recognitions (Google, Webflow, YesWeHack), 
+            and leadership dossier for principal researcher <strong>{siteConfig.founder.name}</strong>.
           </p>
         </div>
 
@@ -62,7 +63,7 @@ export function ResearchSection() {
           ))}
         </div>
 
-        <div data-reveal style={{ textAlign: "center", marginTop: "36px", ...revealDelay(120) }}>
+        <div data-reveal style={{ display: "flex", justifyContent: "center", alignItems: "center", flexWrap: "wrap", gap: "16px", marginTop: "40px", ...revealDelay(120) }}>
           <Link
             href="/research"
             style={{
@@ -70,8 +71,7 @@ export function ResearchSection() {
               alignItems: "center",
               gap: "10px",
               padding: "14px 28px",
-              border: "1px solid rgba(222, 92, 255, 0.5)",
-              background: "rgba(222, 92, 255, 0.1)",
+              background: "var(--dark-purple)",
               color: "#fff",
               borderRadius: "4px",
               fontSize: "13px",
@@ -79,11 +79,34 @@ export function ResearchSection() {
               textTransform: "uppercase",
               letterSpacing: "0.5px",
               fontWeight: 600,
-              boxShadow: "0 0 20px rgba(192, 0, 240, 0.15)",
+              boxShadow: "0 0 25px rgba(192, 0, 240, 0.25)",
+              transition: "background .2s, transform .2s",
             }}
           >
-            Explore Complete Research Dossier & Full CVE List (10+ Published) →
+            View Full Research Dossier & CVEs →
           </Link>
+          {onQuote && (
+            <button
+              type="button"
+              onClick={onQuote}
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "8px",
+                padding: "13px 24px",
+                background: "transparent",
+                border: "1px solid #333",
+                color: "#e0e0e0",
+                borderRadius: "4px",
+                fontSize: "13px",
+                fontFamily: "var(--font-mono)",
+                cursor: "pointer",
+                transition: "border-color .2s, color .2s",
+              }}
+            >
+              Schedule Free Scoping Call ↗
+            </button>
+          )}
         </div>
 
         {/* Hall of Fame Highlights */}

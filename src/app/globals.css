@@ -103,6 +103,11 @@ html.lenis, html.lenis body { height: auto; }
 .text-link:hover { color: var(--purple); }
 .title-line { display: block; text-wrap: balance; }
 .accent { color: var(--purple); }
+.hero-text h1 .accent {
+  color: #de5cff;
+  text-shadow: 0 0 35px rgba(222, 92, 255, 0.75), 0 0 75px rgba(192, 0, 240, 0.45);
+  display: inline-block;
+}
 
 /* ---------- Hero ---------- */
 .hero { position: relative; display: flex; align-items: center; width: 100%; min-height: 100svh; padding: 120px 0 130px; overflow: hidden; background: var(--background); }
@@ -112,7 +117,7 @@ html.lenis, html.lenis body { height: auto; }
 .typed-prompt { margin-right: 10px; color: var(--purple); }
 .typed-caret { display: inline-block; width: 9px; height: 17px; margin-left: 3px; vertical-align: -3px; background: var(--purple); animation: caret-blink 1.05s steps(1) infinite; }
 @keyframes caret-blink { 50% { opacity: 0; } }
-.hero-text h1 { color: #fff; font-family: var(--font-poppins), sans-serif; font-size: clamp(5rem, 6.4vw, 96px); font-weight: 700; line-height: 1.02; letter-spacing: -3px; text-transform: uppercase; }
+.hero-text h1 { color: #fff; font-family: var(--font-poppins), sans-serif; font-size: clamp(3.2rem, 7.5vw, 98px); font-weight: 800; line-height: 1.0; letter-spacing: -3px; text-transform: uppercase; }
 .hero-lead { max-width: 640px; margin-top: 28px; color: #cacaca; font-size: 19px; line-height: 31px; }
 .hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 32px; margin-top: 36px; text-shadow: none; pointer-events: auto; }
 .hero-cta { display: inline-flex; align-items: center; gap: 14px; padding: 14px 24px; border: 2px solid var(--dark-purple); border-radius: 3px; color: #fff; background: rgba(192, 0, 240, .14); font-family: var(--font-mono), monospace; font-size: 14px; line-height: 22px; letter-spacing: .5px; text-transform: uppercase; transition: background .2s; }
@@ -220,11 +225,12 @@ html.lenis, html.lenis body { height: auto; }
 /* ---------- Standards & Methodologies Banner ---------- */
 .standards-banner { background: #070707; border-top: 1px solid #1a1a1a; border-bottom: 1px solid #1a1a1a; padding: 22px 0; }
 .standards-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
-.standards-label { font-family: var(--font-mono), monospace; font-size: 11px; letter-spacing: 1.5px; color: var(--purple); font-weight: 700; }
+.standards-label { font-family: var(--font-mono), monospace; font-size: 11px; letter-spacing: 1.5px; color: var(--purple); font-weight: 700; text-transform: uppercase; }
 .standards-list { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; list-style: none; padding: 0; margin: 0; }
-.standard-tag { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; background: #0d0d0d; border: 1px solid #222; border-radius: 4px; font-family: var(--font-mono), monospace; font-size: 12px; }
+.standard-tag { display: inline-flex; align-items: center; gap: 7px; padding: 6px 12px; background: #0d0d0d; border: 1px solid #222; border-radius: 4px; font-family: var(--font-mono), monospace; font-size: 12px; transition: border-color .2s, background .2s, transform .2s; }
+.standard-tag:hover { border-color: rgba(222, 92, 255, 0.4); background: #141414; transform: translateY(-1px); }
 .standard-name { color: #fff; font-weight: 600; }
-.standard-sub { color: #666; font-size: 11px; }
+.standard-sub { color: #888; font-size: 11px; }
 
 /* ---------- Research & CVE Advisories ---------- */
 .research-section { padding: 9rem 0; background: #000; border-top: 1px solid #1a1a1a; }

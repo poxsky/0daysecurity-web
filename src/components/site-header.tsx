@@ -5,15 +5,22 @@ import { siteConfig } from "@/lib/site-config";
 
 const navLinks = [
   { id: "services", label: "Services", href: "#services" },
-  { id: "research", label: "Research & Track Record", href: "/research" },
+  { id: "research", label: "Research & CVEs", href: "#research" },
+  { id: "process", label: "Process", href: "#process" },
+  { id: "why-us", label: "Why us", href: "#why-us" },
+  { id: "faq", label: "FAQ", href: "#faq" },
   { id: "contact", label: "Contact", href: "#contact" },
 ];
 const menuLinks = [
+  { id: "about", label: "About", href: "#about" },
   { id: "services", label: "Services", href: "#services" },
-  { id: "research", label: "Research & Track Record", href: "/research" },
+  { id: "research", label: "Research & CVEs", href: "#research" },
+  { id: "process", label: "Process", href: "#process" },
+  { id: "why-us", label: "Why us", href: "#why-us" },
+  { id: "faq", label: "FAQ", href: "#faq" },
   { id: "contact", label: "Contact", href: "#contact" },
 ];
-const SECTION_IDS = ["home", "services", "research-gateway", "contact"];
+const SECTION_IDS = ["home", "services", "research", "clients", "about", "process", "why-us", "faq", "cta", "contact"];
 
 export function SiteHeader({ onQuote }: { onQuote: () => void }) {
   const [scrolled, setScrolled] = useState(false);
