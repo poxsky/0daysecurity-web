@@ -213,37 +213,74 @@ export default function ResearchPage() {
         </section>
 
         {/* 100+ Hall of Fame Recognitions */}
-        <section style={{ marginBottom: "60px", background: "#090909", border: "1px solid #1a1a1a", borderRadius: "6px", padding: "36px" }}>
-          <span style={{ fontFamily: "var(--font-mono)", fontSize: "11px", letterSpacing: "1px", color: "#de5cff", textTransform: "uppercase" }}>
-            100+ HALL OF FAME RECOGNITIONS
-          </span>
-          <h2 style={{ fontSize: "24px", fontWeight: 700, margin: "6px 0 12px", fontFamily: "var(--font-poppins)" }}>
-            Global Responsible Disclosure Track Record
-          </h2>
-          <p style={{ color: "#8c8c8c", fontSize: "15px", marginBottom: "28px", maxWidth: "780px" }}>
-            Security vulnerabilities identified and responsibly reported to leading technology enterprises, 
-            Web3 networks, SaaS platforms, and bug bounty programs.
-          </p>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: "16px" }}>
+        <section style={{ marginBottom: "60px", background: "#060606", border: "1px solid #1f1f1f", borderRadius: "6px", padding: "40px 36px" }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", flexWrap: "wrap", gap: "16px", marginBottom: "28px", paddingBottom: "20px", borderBottom: "1px solid #1a1a1a" }}>
+            <div>
+              <span style={{ fontFamily: "var(--font-mono)", fontSize: "11px", letterSpacing: "1.5px", color: "#de5cff", textTransform: "uppercase", fontWeight: 700 }}>
+                ★ 100+ HALL OF FAME RECOGNITIONS
+              </span>
+              <h2 style={{ fontSize: "28px", fontWeight: 700, margin: "6px 0 8px", fontFamily: "var(--font-poppins)" }}>
+                Global Responsible Disclosure Track Record
+              </h2>
+              <p style={{ color: "#9c9c9c", fontSize: "15px", margin: 0, maxWidth: "780px" }}>
+                Security vulnerabilities identified, responsibly disclosed, and acknowledged by Fortune 500 tech platforms, Web3 protocols, and global bug bounty platforms.
+              </p>
+            </div>
+            <div style={{ display: "inline-flex", alignItems: "center", gap: "8px", padding: "8px 16px", borderRadius: "4px", background: "rgba(0, 255, 102, 0.08)", border: "1px solid rgba(0, 255, 102, 0.25)", color: "#00ff66", fontFamily: "var(--font-mono)", fontSize: "12px", fontWeight: 600 }}>
+              <span style={{ width: "7px", height: "7px", borderRadius: "50%", background: "#00ff66", display: "inline-block" }} />
+              Verified & Coordinated Disclosures
+            </div>
+          </div>
+
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(310px, 1fr))", gap: "20px" }}>
             {hallOfFameList.map((hof) => (
               <div
                 key={hof.name}
                 style={{
-                  background: "#121212",
-                  border: "1px solid #222",
-                  borderRadius: "4px",
-                  padding: "18px 20px",
+                  background: "#0a0a0a",
+                  border: "1px solid #1e1e1e",
+                  borderRadius: "6px",
+                  padding: "24px",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-between",
                 }}
               >
-                <h4 style={{ fontSize: "16px", fontWeight: 600, color: "#fff", marginBottom: "4px" }}>{hof.name}</h4>
-                <p style={{ fontSize: "13px", color: "#888", fontFamily: "var(--font-mono)", marginBottom: "8px" }}>
-                  {hof.platform} {hof.hunter ? `(Hunter: ${hof.hunter})` : ""}
-                </p>
-                {hof.badge && (
-                  <span style={{ fontSize: "11px", color: "#de5cff", fontFamily: "var(--font-mono)" }}>
+                <div>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: "10px", marginBottom: "14px" }}>
+                    <div style={{ display: "flex", alignItems: "center", justifyContent: "center", width: "32px", height: "32px", borderRadius: "4px", background: "rgba(222, 92, 255, 0.12)", color: "#de5cff", fontSize: "15px", border: "1px solid rgba(222, 92, 255, 0.3)" }}>
+                      ★
+                    </div>
+                    <span style={{ fontFamily: "var(--font-mono)", fontSize: "10.5px", color: "#777", textTransform: "uppercase", padding: "2px 7px", background: "#121212", border: "1px solid #222", borderRadius: "2px" }}>
+                      {hof.category}
+                    </span>
+                  </div>
+
+                  <h3 style={{ fontSize: "17px", fontWeight: 700, color: "#fff", margin: "0 0 4px", fontFamily: "var(--font-poppins)" }}>
+                    {hof.name}
+                  </h3>
+                  <p style={{ fontSize: "12.5px", color: "#8a8a8a", fontFamily: "var(--font-mono)", margin: "0 0 12px" }}>
+                    {hof.platform}
+                  </p>
+
+                  <div style={{ display: "inline-flex", alignItems: "center", gap: "6px", padding: "4px 10px", borderRadius: "3px", fontSize: "11px", fontFamily: "var(--font-mono)", fontWeight: 600, background: "rgba(222, 92, 255, 0.12)", color: "#de5cff", border: "1px solid rgba(222, 92, 255, 0.25)", marginBottom: "14px" }}>
                     ★ {hof.badge}
+                  </div>
+
+                  {hof.scope && (
+                    <p style={{ fontSize: "12px", color: "#888", margin: "0 0 12px", lineHeight: 1.4, fontFamily: "var(--font-mono)" }}>
+                      Scope: <span style={{ color: "#bbb" }}>{hof.scope}</span>
+                    </p>
+                  )}
+                </div>
+
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", paddingTop: "12px", borderTop: "1px solid #161616", fontSize: "11.5px", fontFamily: "var(--font-mono)" }}>
+                  <span style={{ color: "#888" }}>Hunter: <strong style={{ color: "#ccc" }}>{hof.hunter || "Anmol Singh Rajput"}</strong></span>
+                  <span style={{ display: "inline-flex", alignItems: "center", gap: "5px", color: "#00ff66" }}>
+                    <span style={{ width: "5px", height: "5px", borderRadius: "50%", background: "#00ff66", display: "inline-block" }} />
+                    {hof.status || "Verified"}
                   </span>
-                )}
+                </div>
               </div>
             ))}
           </div>

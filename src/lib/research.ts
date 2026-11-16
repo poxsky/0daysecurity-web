@@ -13,10 +13,13 @@ export type CVEItem = {
 
 export type HallOfFameItem = {
   name: string;
-  platform?: string;
-  hunter?: string;
-  badge?: string;
+  platform: string;
+  badge: string;
   category: "Enterprise" | "Web3 / DeFi" | "SaaS / Platform" | "Retail / Industry";
+  hunter?: string;
+  scope?: string;
+  impact?: string;
+  status?: string;
 };
 
 export const cveList: CVEItem[] = [
@@ -103,46 +106,72 @@ export const cveList: CVEItem[] = [
 export const hallOfFameList: HallOfFameItem[] = [
   {
     name: "Google (Vulnerability Reward Program)",
-    platform: "Google Security Rewards",
+    platform: "Google Security Rewards (VRP)",
     badge: "Hall of Fame Recognition",
     category: "Enterprise",
+    hunter: "Anmol Singh Rajput",
+    scope: "Core Google Services & Cloud Infrastructure",
+    impact: "Security vulnerability reported and resolved via Google VRP",
+    status: "Hall of Fame Inductee",
   },
   {
     name: "YesWeHack Global",
     platform: "Global Bug Bounty Leaderboard",
-    hunter: "gearhead5598",
     badge: "Verified Hunter · Top Rank",
     category: "Enterprise",
+    hunter: "gearhead5598",
+    scope: "International Enterprise Bug Bounty Targets",
+    impact: "Ranked among top global ethical hackers on YesWeHack",
+    status: "Top Ranked Hunter",
   },
   {
     name: "Coopérative U - U TECHNO",
     platform: "YesWeHack Program",
-    hunter: "gearhead5598",
     badge: "Medal of Recognition",
     category: "Retail / Industry",
+    hunter: "gearhead5598",
+    scope: "Retail Groupement U IT & Customer Infrastructure",
+    impact: "Official Medal of Recognition awarded for high-severity vulnerability",
+    status: "Medal Awarded",
   },
   {
     name: "Webflow",
     platform: "Bug Bounty & Responsible Disclosure",
-    badge: "Hall of Fame",
+    badge: "Hall of Fame Inductee",
     category: "SaaS / Platform",
+    hunter: "Anmol Singh Rajput",
+    scope: "Webflow Cloud Engine & Application Services",
+    impact: "Security flaw validated and patched by Webflow Security Team",
+    status: "Official Hall of Fame",
   },
   {
     name: "Kaia Web",
-    platform: "Responsible Disclosure",
+    platform: "Responsible Disclosure Program",
     badge: "Security Acknowledgement",
     category: "Web3 / DeFi",
+    hunter: "Anmol Singh Rajput",
+    scope: "Kaia Protocol & Web3 DApp Infrastructure",
+    impact: "Vulnerability identified, validated, and patched before exploitation",
+    status: "Formally Acknowledged",
   },
   {
     name: "Superposition Finance Web",
-    platform: "Security Research",
-    badge: "Hall of Fame",
+    platform: "Security Research & Audit",
+    badge: "Hall of Fame Inductee",
     category: "Web3 / DeFi",
+    hunter: "Anmol Singh Rajput",
+    scope: "DeFi Protocol & Web Financial Interfaces",
+    impact: "Security vulnerability responsibly disclosed and mitigated",
+    status: "Hall of Fame Inductee",
   },
   {
     name: "U2Staking Web",
-    platform: "Responsible Disclosure",
+    platform: "Responsible Disclosure Program",
     badge: "Security Acknowledgement",
     category: "Web3 / DeFi",
+    hunter: "Anmol Singh Rajput",
+    scope: "Staking Infrastructure & Validator Services",
+    impact: "Flaw identified and secured through coordinated remediation",
+    status: "Formally Acknowledged",
   },
 ];

@@ -255,17 +255,68 @@ html.lenis, html.lenis body { height: auto; }
 .cve-link:hover { color: #fff; text-decoration: underline; }
 
 /* Hall of Fame Band */
-.hof-band { margin-top: 60px; padding: 36px 32px; background: radial-gradient(ellipse 60% 80% at 50% 0%, rgba(222, 92, 255, 0.08), transparent 70%), #050505; border: 1px solid #1a1a1a; border-radius: 4px; }
-.hof-header { margin-bottom: 24px; }
-.hof-header h3 { font-family: var(--font-poppins), sans-serif; font-size: 20px; font-weight: 600; color: #fff; }
-.hof-header p { margin-top: 6px; color: #8c8c8c; font-size: 14px; }
-.hof-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
-.hof-card { display: flex; align-items: center; gap: 14px; padding: 14px 18px; background: #0d0d0d; border: 1px solid #1f1f1f; border-radius: 4px; }
-.hof-badge-icon { display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 50%; background: rgba(222, 92, 255, 0.12); color: var(--purple); font-size: 14px; flex-shrink: 0; }
-.hof-info { display: flex; flex-direction: column; gap: 2px; }
-.hof-name { font-family: var(--font-poppins), sans-serif; font-size: 14px; font-weight: 600; color: #fff; }
-.hof-platform { font-size: 12px; color: #7f7f7f; font-family: var(--font-mono), monospace; }
-.hof-pill { display: inline-block; margin-top: 2px; font-size: 10px; font-family: var(--font-mono), monospace; color: var(--purple); }
+.hof-band { 
+  margin-top: 60px; 
+  padding: 44px 36px; 
+  background: radial-gradient(ellipse 70% 90% at 50% 0%, rgba(222, 92, 255, 0.08), transparent 70%), #060606; 
+  border: 1px solid #1f1f1f; 
+  border-radius: 6px; 
+}
+.hof-header { 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: flex-end; 
+  flex-wrap: wrap; 
+  gap: 16px; 
+  margin-bottom: 32px; 
+  padding-bottom: 24px; 
+  border-bottom: 1px solid #1a1a1a; 
+}
+.hof-header-left { max-width: 680px; }
+.hof-header-tag { font-family: var(--font-mono), monospace; font-size: 11px; letter-spacing: 1.5px; color: var(--purple); font-weight: 700; text-transform: uppercase; display: block; margin-bottom: 8px; }
+.hof-header h3 { font-family: var(--font-poppins), sans-serif; font-size: clamp(1.4rem, 2.2vw, 26px); font-weight: 700; color: #fff; line-height: 1.25; margin: 0; }
+.hof-header p { margin-top: 8px; color: #9c9c9c; font-size: 15px; line-height: 1.5; margin-bottom: 0; }
+.hof-stats-pill { display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; border-radius: 4px; background: rgba(0, 255, 102, 0.08); border: 1px solid rgba(0, 255, 102, 0.25); color: #00ff66; font-family: var(--font-mono), monospace; font-size: 12px; font-weight: 600; }
+.hof-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 18px; }
+.hof-card { 
+  position: relative; 
+  display: flex; 
+  flex-direction: column; 
+  justify-content: space-between; 
+  padding: 24px; 
+  background: #0b0b0b; 
+  border: 1px solid #1e1e1e; 
+  border-radius: 6px; 
+  transition: border-color .25s ease, transform .25s ease, box-shadow .25s ease; 
+}
+.hof-card:hover { 
+  border-color: rgba(222, 92, 255, 0.4); 
+  transform: translateY(-2px); 
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5), 0 0 15px rgba(192, 0, 240, 0.1); 
+}
+.hof-card-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; margin-bottom: 14px; }
+.hof-badge-icon { 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  width: 32px; 
+  height: 32px; 
+  border-radius: 4px; 
+  background: rgba(222, 92, 255, 0.14); 
+  color: #de5cff; 
+  font-size: 15px; 
+  flex-shrink: 0; 
+  border: 1px solid rgba(222, 92, 255, 0.3); 
+}
+.hof-category-tag { font-family: var(--font-mono), monospace; font-size: 10.5px; color: #777; text-transform: uppercase; letter-spacing: 0.5px; padding: 2px 7px; background: #121212; border: 1px solid #222; border-radius: 2px; }
+.hof-name { font-family: var(--font-poppins), sans-serif; font-size: 16px; font-weight: 700; color: #fff; line-height: 1.35; margin: 0 0 4px; }
+.hof-platform { font-size: 12.5px; color: #8e8e8e; font-family: var(--font-mono), monospace; margin: 0 0 12px; }
+.hof-badge-pill { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 3px; font-size: 11px; font-family: var(--font-mono), monospace; font-weight: 600; background: rgba(222, 92, 255, 0.12); color: #de5cff; border: 1px solid rgba(222, 92, 255, 0.25); margin-bottom: 14px; width: fit-content; }
+.hof-card-bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 12px; border-top: 1px solid #161616; font-size: 11.5px; font-family: var(--font-mono), monospace; }
+.hof-hunter { color: #888; }
+.hof-hunter strong { color: #ccc; }
+.hof-status-dot { display: inline-flex; align-items: center; gap: 5px; color: #00ff66; }
+.hof-status-dot span { width: 5px; height: 5px; border-radius: 50%; background: #00ff66; box-shadow: 0 0 6px rgba(0, 255, 102, 0.6); display: inline-block; }
 
 @media (max-width: 900px) {
   .cve-grid { grid-template-columns: 1fr; }

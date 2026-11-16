@@ -112,17 +112,41 @@ export function ResearchSection({ onQuote }: { onQuote?: () => void }) {
         {/* Hall of Fame Highlights */}
         <div className="hof-band" data-reveal style={revealDelay(150)}>
           <div className="hof-header">
-            <h3>Responsible Disclosure & Bug Bounty Recognitions</h3>
-            <p>Verified security contributions acknowledged by enterprise programs and leading security platforms.</p>
+            <div className="hof-header-left">
+              <span className="hof-header-tag">RESPONSIBLE DISCLOSURE & BUG BOUNTY RECOGNITIONS</span>
+              <h3>Verified Security Contributions & Hall of Fame Standing</h3>
+              <p>Verified security contributions acknowledged by enterprise programs and leading security platforms.</p>
+            </div>
+            <div className="hof-stats-pill">
+              <span style={{ width: "7px", height: "7px", borderRadius: "50%", background: "#00ff66", display: "inline-block" }} />
+              100+ Global Recognitions
+            </div>
           </div>
           <div className="hof-grid">
             {hallOfFameList.map((hof) => (
               <div className="hof-card" key={hof.name}>
-                <div className="hof-badge-icon" aria-hidden="true">★</div>
-                <div className="hof-info">
+                <div>
+                  <div className="hof-card-top">
+                    <div className="hof-badge-icon" aria-hidden="true">★</div>
+                    <span className="hof-category-tag">{hof.category}</span>
+                  </div>
                   <h4 className="hof-name">{hof.name}</h4>
-                  <p className="hof-platform">{hof.platform || hof.category}</p>
-                  {hof.badge && <span className="hof-pill">{hof.badge}</span>}
+                  <p className="hof-platform">{hof.platform}</p>
+                  <div className="hof-badge-pill">
+                    ★ {hof.badge}
+                  </div>
+                  {hof.scope && (
+                    <p style={{ fontSize: "12px", color: "#888", margin: "0 0 12px", lineHeight: 1.4, fontFamily: "var(--font-mono)" }}>
+                      Scope: <span style={{ color: "#bbb" }}>{hof.scope}</span>
+                    </p>
+                  )}
+                </div>
+                <div className="hof-card-bottom">
+                  <span className="hof-hunter">Hunter: <strong>{hof.hunter || "Anmol Singh Rajput"}</strong></span>
+                  <span className="hof-status-dot">
+                    <span />
+                    {hof.status || "Verified"}
+                  </span>
                 </div>
               </div>
             ))}
