@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useRef, type KeyboardEvent } from "react";
 import { Icon } from "@/components/icons";
 import { servicesCopy } from "@/lib/content";
@@ -108,6 +109,57 @@ export function ServicesSection({ activeId, onSelect, onQuote }: ServicesSection
               </div>
             ))}
           </div>
+        </div>
+
+        {/* Directory Bridge Banner to /services */}
+        <div
+          data-reveal
+          style={{
+            marginTop: "60px",
+            padding: "36px",
+            background: "radial-gradient(ellipse 70% 90% at 85% 20%, rgba(192, 0, 240, 0.12), transparent 70%), #0a0a0a",
+            border: "1px solid #222",
+            borderRadius: "6px",
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            flexWrap: "wrap",
+            gap: "24px",
+            ...revealDelay(240),
+          }}
+        >
+          <div style={{ maxWidth: "680px" }}>
+            <span style={{ fontFamily: "var(--font-mono)", fontSize: "11px", letterSpacing: "1.5px", color: "#de5cff", fontWeight: 700, textTransform: "uppercase" }}>
+              FULL CAPABILITIES & SPECIALIST LAB RESEARCH
+            </span>
+            <h4 style={{ fontSize: "clamp(1.25rem, 2vw, 24px)", fontWeight: 700, color: "#fff", margin: "8px 0 6px", fontFamily: "var(--font-poppins)" }}>
+              Need deeper research or specialized domain testing?
+            </h4>
+            <p style={{ fontSize: "14px", color: "#9e9e9e", margin: 0, lineHeight: 1.6 }}>
+              Explore our complete directory of 36+ domains including Binary Exploitation, Fuzzing, Kernel Internals, AI/LLM Security, Kubernetes, OT/SCADA, and Automotive Security with live keyword filtering.
+            </p>
+          </div>
+          <Link
+            href="/services"
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "10px",
+              padding: "14px 26px",
+              background: "var(--dark-purple)",
+              color: "#fff",
+              borderRadius: "4px",
+              fontSize: "13px",
+              fontFamily: "var(--font-mono)",
+              fontWeight: 600,
+              textTransform: "uppercase",
+              letterSpacing: "0.5px",
+              transition: "background .2s, transform .2s",
+              boxShadow: "0 0 25px rgba(192, 0, 240, 0.2)",
+            }}
+          >
+            Explore Full 36+ Domains Directory →
+          </Link>
         </div>
       </div>
     </section>

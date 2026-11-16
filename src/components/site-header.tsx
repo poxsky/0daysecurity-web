@@ -4,21 +4,22 @@ import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { siteConfig } from "@/lib/site-config";
 
 const navLinks = [
-  { id: "services", label: "Services", href: "#services" },
-  { id: "research", label: "Research & CVEs", href: "#research" },
-  { id: "process", label: "Process", href: "#process" },
-  { id: "why-us", label: "Why us", href: "#why-us" },
-  { id: "faq", label: "FAQ", href: "#faq" },
-  { id: "contact", label: "Contact", href: "#contact" },
+  { id: "services", label: "Capabilities", href: "/services" },
+  { id: "research", label: "Research & CVEs", href: "/research" },
+  { id: "process", label: "Process", href: "/#process" },
+  { id: "why-us", label: "Why us", href: "/#why-us" },
+  { id: "faq", label: "FAQ", href: "/#faq" },
+  { id: "contact", label: "Contact", href: "/#contact" },
 ];
 const menuLinks = [
-  { id: "about", label: "About", href: "#about" },
-  { id: "services", label: "Services", href: "#services" },
-  { id: "research", label: "Research & CVEs", href: "#research" },
-  { id: "process", label: "Process", href: "#process" },
-  { id: "why-us", label: "Why us", href: "#why-us" },
-  { id: "faq", label: "FAQ", href: "#faq" },
-  { id: "contact", label: "Contact", href: "#contact" },
+  { id: "home", label: "Home", href: "/" },
+  { id: "services", label: "All Capabilities (36+ Domains)", href: "/services" },
+  { id: "research", label: "Research Dossier & CVEs", href: "/research" },
+  { id: "about", label: "About & Leadership", href: "/#about" },
+  { id: "process", label: "How We Work", href: "/#process" },
+  { id: "why-us", label: "Why Us", href: "/#why-us" },
+  { id: "faq", label: "FAQ", href: "/#faq" },
+  { id: "contact", label: "Contact & Scoping", href: "/#contact" },
 ];
 const SECTION_IDS = ["home", "services", "research", "clients", "about", "process", "why-us", "faq", "cta", "contact"];
 

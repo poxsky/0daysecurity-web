@@ -4,9 +4,10 @@ import { services } from "@/lib/services";
 import { siteConfig } from "@/lib/site-config";
 
 const companyLinks = [
-  { href: "/#services", label: "Services" },
+  { href: "/services", label: "Capabilities Directory (36+ Domains)" },
   { href: "/research", label: "Research & Track Record" },
   { href: "/research#founder", label: "Leadership Dossier" },
+  { href: "/#about", label: "About us" },
   { href: "/privacy", label: "Privacy notice" },
 ];
 
@@ -66,6 +67,11 @@ export function SiteFooter({ onQuote, onTerminal, onService }: SiteFooterProps) 
                   </a>
                 </li>
               ))}
+              <li style={{ marginTop: "10px", paddingTop: "8px", borderTop: "1px solid #1c1c1c" }}>
+                <a href="/services" style={{ color: "#de5cff", fontSize: "13px", fontWeight: 600 }}>
+                  All 36+ Domains Directory →
+                </a>
+              </li>
             </ul>
           </div>
           <div className="footer-col">
